@@ -1,2 +1,2 @@
 # MyCoin
-DoAnCNM_1612043_Cryptocurrency Project
+Cryptocurrency Project_DoAnCNM_1612043
