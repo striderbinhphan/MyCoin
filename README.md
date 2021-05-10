@@ -24,6 +24,6 @@ npm start
 
 ### References
 
-- [Naivecoin: a tutorial for building a cryptocurrency](https://lhartikk.github.io)
+- [Naivecoin: a tutorial for building a cryptocurrency](https://lhartikk.github.io)>
 
 - SavjeeCoin(https://github.com/Savjee/SavjeeCoin)
