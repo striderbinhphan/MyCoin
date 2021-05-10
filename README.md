@@ -5,7 +5,6 @@ Cryptocurrency Project_DoAnCNM_1612043
 
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Getting started](#getting-started)
 - [References](#references)
 
 ### Prerequisites
@@ -25,5 +24,6 @@ npm start
 
 ### References
 
--[Naivecoin: a tutorial for building a cryptocurrency](https://lhartikk.github.io)
--SavjeeCoin(https://github.com/Savjee/SavjeeCoin)
+- [Naivecoin: a tutorial for building a cryptocurrency](https://lhartikk.github.io)
+
+- SavjeeCoin(https://github.com/Savjee/SavjeeCoin)
