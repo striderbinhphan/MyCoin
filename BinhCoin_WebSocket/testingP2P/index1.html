@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Websocket</title>
+</head>
+<body>
+    <input type="text" placeholder="yourMessage" id="inputText">
+    <div id='textMessage'></div>
+    <button id = "btnHello">Send hello</button>
+    <script>
+        var sock = new WebSocket("ws://localhost:3003");
+        var name = prompt("what is your name?");
+        var textMessage = document.getElementById('textMessage');
+        sock.onopen= function (event) {
+            //alert('Socket connected successfully');
+            // setTimeout(() => {
+            //     sock.send("hello server");
+            // }, 1000);
+            sock.send(JSON.stringify({
+                type: "name",
+                data: name
+            }))
+        }
+        sock.onmessage =function(event){
+            var dataJSON = JSON.parse(event.data);
+            console.log(event);
+            textMessage.innerHTML += dataJSON.name +":"+dataJSON.message +'<Br>';
+        }
+        document.querySelector('#btnHello').addEventListener('click',function () {
+            var text = document.getElementById("inputText").value;
+            sock.send(JSON.stringify({
+                type: "message",
+                data: text
+            }));
+            textMessage.innerHTML +="You:" +text +'<Br>';
+        })
+    </script>
+</body>
+</html>
