@@ -16,8 +16,15 @@ let BinhCoin  = new BlockChain();
 // console.log("blance of BNNN",BinhCoin.getBalanceOfAddress("SuccessAddress"));
 // BinhCoin.minePendingTransactions("SuccessAddress");
 // console.log("blance of BNNN",BinhCoin.getBalanceOfAddress("SuccessAddress"));
-const myKey = ec.keyFromPrivate('cae6159e7d7910da218cc41a6cd1088b426d7f7b081f8c7de49f2a41aba218eb');
+// const myKey = ec.keyFromPrivate('cae6159e7d7910da218cc41a6cd1088b426d7f7b081f8c7de49f2a41aba218eb');
+const myKey = ec.keyFromPublic('04909f76e30a00afaa226e6ab51f3b8137b876b347676c8b8f09600d3c9b085df436da5514018eb14d6d36eaf6a85b07a4fcca5b78892f2b2a802767aa5f43c7ae','hex');
+
 const myWalletAddress  = myKey.getPublic('hex');
+// const myWalletAddress1  = myKey1.getPublic('hex');
+
+console.log(myWalletAddress);
+// console.log(myWalletAddress1);
+
 
 const myWife  = ec.keyFromPrivate('04cdaf09c749de64ba199b8e77ea36740166d0e3d9a6849b74dd70697d88aad9ccb582c142f664a91c2322cdf78a50f389de59a14b095d12fea11a535f18d355f0');
 const myWifeWalletAddress = myWife.getPublic('hex');
@@ -96,69 +103,69 @@ console.log('My Balance',BinhCoin.getBalanceOfAddress(myWalletAddress))
 console.log('Mywife Balance',BinhCoin.getBalanceOfAddress(myWifeWalletAddress))
 
 
-// const tx7 = new Transaction(minerWalletAddress,myWifeWalletAddress,10);
-// tx7.signTransaction(miner);
-// BinhCoin.addTransaction(tx7);
+const tx7 = new Transaction(minerWalletAddress,myWifeWalletAddress,10);
+tx7.signTransaction(miner);
+BinhCoin.addTransaction(tx7);
 
-// console.log('Miner is mining');
-// BinhCoin.minePendingTransactions(minerWalletAddress);
+console.log('Miner is mining');
+BinhCoin.minePendingTransactions(minerWalletAddress);
 
-// //console.log(BinhCoin);
-// console.log('Miner Balance',BinhCoin.getBalanceOfAddress(minerWalletAddress))
-// console.log('My Balance',BinhCoin.getBalanceOfAddress(myWalletAddress))
-// console.log('Mywife Balance',BinhCoin.getBalanceOfAddress(myWifeWalletAddress))
-
-
-// const tx8 = new Transaction(minerWalletAddress,myWifeWalletAddress,10);
-// tx8.signTransaction(miner);
-// BinhCoin.addTransaction(tx8);
-
-// console.log('Miner is mining');
-// BinhCoin.minePendingTransactions(minerWalletAddress);
-
-// //console.log(BinhCoin);
-// console.log('Miner Balance',BinhCoin.getBalanceOfAddress(minerWalletAddress))
-// console.log('My Balance',BinhCoin.getBalanceOfAddress(myWalletAddress))
-// console.log('Mywife Balance',BinhCoin.getBalanceOfAddress(myWifeWalletAddress))
+//console.log(BinhCoin);
+console.log('Miner Balance',BinhCoin.getBalanceOfAddress(minerWalletAddress))
+console.log('My Balance',BinhCoin.getBalanceOfAddress(myWalletAddress))
+console.log('Mywife Balance',BinhCoin.getBalanceOfAddress(myWifeWalletAddress))
 
 
-// const tx9 = new Transaction(minerWalletAddress,myWifeWalletAddress,10);
-// tx9.signTransaction(miner);
-// BinhCoin.addTransaction(tx9);
+const tx8 = new Transaction(minerWalletAddress,myWifeWalletAddress,10);
+tx8.signTransaction(miner);
+BinhCoin.addTransaction(tx8);
 
-// console.log('Miner is mining');
-// BinhCoin.minePendingTransactions(minerWalletAddress);
+console.log('Miner is mining');
+BinhCoin.minePendingTransactions(minerWalletAddress);
 
-// //console.log(BinhCoin);
-// console.log('Miner Balance',BinhCoin.getBalanceOfAddress(minerWalletAddress))
-// console.log('My Balance',BinhCoin.getBalanceOfAddress(myWalletAddress))
-// console.log('Mywife Balance',BinhCoin.getBalanceOfAddress(myWifeWalletAddress))
-
-
-// const tx10 = new Transaction(minerWalletAddress,myWifeWalletAddress,10);
-// tx10.signTransaction(miner);
-// BinhCoin.addTransaction(tx10);
-
-// console.log('Miner is mining');
-// BinhCoin.minePendingTransactions(minerWalletAddress);
-
-// //console.log(BinhCoin);
-// console.log('Miner Balance',BinhCoin.getBalanceOfAddress(minerWalletAddress))
-// console.log('My Balance',BinhCoin.getBalanceOfAddress(myWalletAddress))
-// console.log('Mywife Balance',BinhCoin.getBalanceOfAddress(myWifeWalletAddress))
+//console.log(BinhCoin);
+console.log('Miner Balance',BinhCoin.getBalanceOfAddress(minerWalletAddress))
+console.log('My Balance',BinhCoin.getBalanceOfAddress(myWalletAddress))
+console.log('Mywife Balance',BinhCoin.getBalanceOfAddress(myWifeWalletAddress))
 
 
-// const tx11 = new Transaction(minerWalletAddress,myWifeWalletAddress,10);
-// tx11.signTransaction(miner);
-// BinhCoin.addTransaction(tx11);
+const tx9 = new Transaction(minerWalletAddress,myWifeWalletAddress,10);
+tx9.signTransaction(miner);
+BinhCoin.addTransaction(tx9);
 
-// console.log('Miner is mining');
-// BinhCoin.minePendingTransactions(minerWalletAddress);
+console.log('Miner is mining');
+BinhCoin.minePendingTransactions(minerWalletAddress);
 
-// //console.log(BinhCoin);
-// console.log('Miner Balance',BinhCoin.getBalanceOfAddress(minerWalletAddress))
-// console.log('My Balance',BinhCoin.getBalanceOfAddress(myWalletAddress))
-// console.log('Mywife Balance',BinhCoin.getBalanceOfAddress(myWifeWalletAddress))
+//console.log(BinhCoin);
+console.log('Miner Balance',BinhCoin.getBalanceOfAddress(minerWalletAddress))
+console.log('My Balance',BinhCoin.getBalanceOfAddress(myWalletAddress))
+console.log('Mywife Balance',BinhCoin.getBalanceOfAddress(myWifeWalletAddress))
+
+
+const tx10 = new Transaction(minerWalletAddress,myWifeWalletAddress,10);
+tx10.signTransaction(miner);
+BinhCoin.addTransaction(tx10);
+
+console.log('Miner is mining');
+BinhCoin.minePendingTransactions(minerWalletAddress);
+
+//console.log(BinhCoin);
+console.log('Miner Balance',BinhCoin.getBalanceOfAddress(minerWalletAddress))
+console.log('My Balance',BinhCoin.getBalanceOfAddress(myWalletAddress))
+console.log('Mywife Balance',BinhCoin.getBalanceOfAddress(myWifeWalletAddress))
+
+
+const tx11 = new Transaction(minerWalletAddress,myWifeWalletAddress,10);
+tx11.signTransaction(miner);
+BinhCoin.addTransaction(tx11);
+
+console.log('Miner is mining');
+BinhCoin.minePendingTransactions(minerWalletAddress);
+
+//console.log(BinhCoin);
+console.log('Miner Balance',BinhCoin.getBalanceOfAddress(minerWalletAddress))
+console.log('My Balance',BinhCoin.getBalanceOfAddress(myWalletAddress))
+console.log('Mywife Balance',BinhCoin.getBalanceOfAddress(myWifeWalletAddress))
 
 
 
