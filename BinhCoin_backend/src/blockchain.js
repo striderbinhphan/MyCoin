@@ -72,9 +72,9 @@ class BlockChain{
         this.chain = [this.createGenesisBlock()];
         //this.difficulty = 2;
         // in seconds_10minutes in BTC
-        this.BLOCK_GENERATION_INTERVAL = 1;
+        this.BLOCK_GENERATION_INTERVAL = 0.01;
         // in blocks_2016blocks in BTC
-        this.DIFFICULTY_ADJUSTMENT_INTERVAL = 1;  
+        this.DIFFICULTY_ADJUSTMENT_INTERVAL = 4;  
         this.pendingTransactions = [];
         this.miningReward  = 100;
     }
