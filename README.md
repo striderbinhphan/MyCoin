@@ -16,14 +16,19 @@ Code simple Coin
 
 ### Getting started
 Inside backend/frontend folder,
+
 Run backend with:
 ```sh
 npm install
 ```
-
 ```sh
 npm start
 ```
+Install npm(error case):
+```sh
+npm install crypto-js
+```
+
 Run frontend with: 
 ```sh
 http-server
