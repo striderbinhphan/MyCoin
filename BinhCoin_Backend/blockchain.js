@@ -1,20 +1,21 @@
 const SHA256 = require('crypto-js/sha256');
 const EC = require('elliptic').ec;
 const ec = new EC('secp256k1');
-const util = require('./util')
+//const util = require('./util')
 class Transaction {
-    constructor(fromAddress,toAddress,amount){
+    constructor(fromAddress,toAddress,amount,timestamp){
         this.fromAddress = fromAddress;
         this.toAddress = toAddress;
         this.amount = amount;
+        this.timestamp = timestamp;
     }
     calculateHash(){
-        return SHA256(this.fromAddress + this.toAddress +this.amount).toString();
+        return SHA256(this.fromAddress + this.toAddress +this.amount +this.timestamp).toString();
     }
     signTransaction(signingKey){
         if(signingKey === null)return this.signature = "system";
         if(signingKey.getPublic('hex') != this.fromAddress){
-            throw new Error('You cannot sign transaction with another wallets!');
+            return 'You cannot sign transaction with another wallets!';
         }
         const hashTx = this.calculateHash();
         const sig = signingKey.sign(hashTx,'base64');
@@ -25,7 +26,7 @@ class Transaction {
             return true
         };
         if(!this.signature || this.signature.length ===0){
-            throw new Error('No signature in this transaction');
+            return 'No signature in this transaction';
         }
         const publicKey  = ec.keyFromPublic(this.fromAddress,'hex');
         return publicKey.verify(this.calculateHash(),this.signature);
@@ -33,7 +34,7 @@ class Transaction {
     ///MYcoding fixing
     // isValidTransaction(){
     //     if(!this.signature || this.signature.length ===0){
-    //         throw new Error('No signature in this transaction');
+    //         return 'No signature in this transaction');
     //     }
     //     const publicKey  = ec.keyFromPublic(this.fromAddress,'hex');
     //     return publicKey.verify(this.calculateHash(),this.signature);
@@ -79,7 +80,7 @@ class BlockChain{
         this.miningReward  = 100;
     }
     createGenesisBlock(){
-        return new Block(0,Date.parse('2021-05-05'), [],'0',0,0,'genesisHash');
+        return new Block(0,Date.parse('2021-05-05')/1000, [],'0',0,0,'genesisHash');
     }
     getLatestBlock(){
         return this.chain[this.chain.length -1];
@@ -119,7 +120,7 @@ class BlockChain{
         let index = latestBlock.index + 1;
         let difficulty = this.getDifficulty();
         let timestamp = this.getCurrentTimestamp();
-        const miningRewardTx = new Transaction(null,miningRewardAdress,this.miningReward);
+        const miningRewardTx = new Transaction(null,miningRewardAdress,this.miningReward,Math.round(new Date().getTime()/1000));
         miningRewardTx.signTransaction(null);
         this.pendingTransactions.push(miningRewardTx);
         //difficulty changing?
@@ -219,48 +220,36 @@ class BlockChain{
         }
         return false;
     };
-    // addTransaction(transaction){
-    //     if(!transaction.fromAddress || !transaction.toAddress){
-    //         throw  new Error('Transaction must be have from and to address');
-    //     }
-    //     if(!transaction.isValidTransaction()){
-    //         throw new Error('Cannot add invalid transaction to block');
-    //     }
-    //     if(this.getBalanceOfAddress(transaction.fromAddress)<transaction.amount){
-    //         throw new Error("You don't have enougn money to make its transaction!!!!!");
-    //     }
-        
-        
-        
-    //     if (transaction.amount <= 0) {
-    //         throw new Error('Transaction amount should be higher than 0');
-    //       }
-    //     this.pendingTransactions.push(transaction);
-        
-    // }
+    
     //MYcoding fixing
     addTransaction(transaction){
         if(transaction.fromAddress  === null)//mining reward from our blockchain coin system
         {
+            if(transaction.amount==0){
+                return 'Amount must be greater than 0';
+            }
             if(!transaction.toAddress){
-                throw  new Error('Transaction must be have from and to address');
+                return 'Transaction must be have from and to address';
             }
             
             if(!transaction.isValidTransaction()){
-                throw new Error('Cannot add invalid transaction to block');
+                return 'Cannot add invalid transaction to block';
             }
             this.pendingTransactions.push(transaction);
         }else{
+            if(transaction.amount==0){
+                return 'Amount must be greater than 0';
+            }
             if(!transaction.fromAddress || !transaction.toAddress){
-                throw  new Error('Transaction must be have from and to address');
+                return 'Transaction must be have from and to address';
             }
             if(this.getBalanceOfAddress(transaction.fromAddress)<transaction.amount){
-                throw new Error("You don't have enougn money to make its transaction!!!!!");
+                return "You don't have enougn money to make its transaction!!!!!";
             }
             
             
             if(!transaction.isValidTransaction()){
-                throw new Error('Cannot add invalid transaction to block');
+                return 'Cannot add invalid transaction to block';
             }
 
             this.pendingTransactions.push(transaction);
@@ -277,6 +266,14 @@ class BlockChain{
                 if(transaction.toAddress === address){
                     balance += transaction.amount;
                 }
+            }
+        }
+        for (const transaction of this.pendingTransactions) {
+            if(transaction.fromAddress  === address){
+                balance -= transaction.amount;
+            }
+            if(transaction.toAddress === address){
+                balance += transaction.amount;
             }
         }
         return balance;
@@ -297,6 +294,76 @@ class BlockChain{
         }
         return true;
     }
+    getBlockChain(){
+        return this.chain;
+    }
+    getAllTransactions(){
+        const transactions = this.chain.map(txs=>txs.transactions).reduce((txArr,ele)=>txArr.concat(ele));
+        return transactions.concat(this.pendingTransactions);
+    }
+    getBlockPendingTransactions(){
+        return this.pendingTransactions;
+    }
+    getSendingTransactionsOfAddress(address){
+        let sendingTransactions =[];
+        const transactions = this.chain.map(txs=>txs.transactions).reduce((txArr,ele)=>txArr.concat(ele));
+        for (const trans of transactions) {
+            if(trans.fromAddress === address)
+            {
+                sendingTransactions.push(trans);
+            }
+        }
+        return sendingTransactions;
+    }
+    getReceivingTransactionsOfAddress(address){
+        let receivingTransactions =[];
+        const transactions = this.chain.map(txs=>txs.transactions).reduce((txArr,ele)=>txArr.concat(ele));
+        for (const trans of transactions) {
+            if(trans.toAddress === address)
+            {
+                receivingTransactions.push(trans);
+            }
+        }
+        return receivingTransactions;
+    }
+}
+
+class Wallets{
+    constructor(){
+        this.walletArray = [];
+    }
+    generateKeyPair(){
+        const key = ec.genKeyPair();
+        const publicKey = key.getPublic('hex');
+        const privateKey = key.getPrivate('hex');
+        this.walletArray.push(publicKey);
+        return JSON.stringify({
+            publicKey: publicKey,
+            privateKey: privateKey
+        })
+    }
+    //publicKey == address
+    isValidPrivateKey(inputPrivateKey){
+        const key = ec.keyFromPrivate(inputPrivateKey);
+        const address = key.getPublic('hex');
+        if(this.isValidAddress(address)){
+            return true;
+        }
+        console.log("This wallet isn't created");
+        return false;
+    }
+    isValidAddress(address){
+        return this.walletArray.includes(address);
+    }
+    addAddress(address){
+        if(!this.isValidAddress(address)){
+            this.walletArray.push(address)
+        }else{
+            console.log("This wallet is existing");
+        }
+    }
 }
 module.exports.BlockChain = BlockChain;
 module.exports.Transaction = Transaction;
+module.exports.Block = Block;
+module.exports.Wallets = Wallets;

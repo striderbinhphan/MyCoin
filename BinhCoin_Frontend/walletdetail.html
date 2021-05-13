@@ -43,7 +43,7 @@
 					<form>
 						<div class="modal-body">
 							<div class="form-group">
-								<div class="button-options" >
+								<div class="button-options">
 									<div class="item-select-custom">
 										<div class="wallet-option-container">
 											<div class="img-title-container">
@@ -136,7 +136,7 @@
 						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav navbar-right">
-								<li><a href="#blockchainexplorer">Block Chain Explorer</a></li>
+								<li><a href="index.html">Block Chain Explorer</a></li>
 								<li><a href="#createwallet" data-toggle="modal" data-target="#createwallet">Create Wallet</a></li>
 								<li><a href="#accesswallet" data-toggle="modal" data-target="#accesswallet">Access Wallet</a></li>
 							</ul>
@@ -174,69 +174,98 @@
 			<!-- block for animate navigation menu -->
 			<div class="nav-animate"></div>
 			
-			<!-- Hero block area -->
-			<div id="blockchainexplorer" class="hero pad">
-				<div class="container">
-					<!-- hero content -->
-					<div class="hero-content ">
-						<!-- heading -->
-						<h2>Block Chain Explorer</h2>
-					</div>
-					<!-- hero play list -->
-					<div class="hero-block">
-						<div class="row">
+		<!-- block for animate navigation menu -->
+        <div class="nav-animate"></div>
+			
+        <!-- Hero block area -->
+        <div id="blockchainexplorer" class="hero pad">
+                <div class="container">
+                    <!-- hero content -->
+                    <div class="hero-content ">
+                        <div class="container d-flex justify-content-space-between">
+                            <div >
+                                <div class="card p-3">
+                                    <p class="text-dark">Wallet</p>
+                                    <div class="card-bottom pt-3 px-3 mb-2">
+                                        <div class="d-flex flex-row justify-content-between text-align-center">
+                                            <div class="d-flex flex-column"><span>Balance amount:</span>
+                                                <p>&dollar; <span id="walletBalance" class="text-white">0</span></p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <!-- heading -->
+                        <h2>Your Transaction</h2>
+                    </div>
+                    <!-- hero play list -->
+                    <div class="hero-block">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="card card-wrapper">
+                                    <div class="card-header">
+                                        <h4>Sending transaction</h4>
+                                        <hr>
+                                    </div>
+                                    <div class="card-body">
+                                        <!-- play list -->
+                                        <div class="block-content force-overflow scroll-custom block-scroll-action">
+                                            <table id="sendingTxs_table" class="table table-striped table-bordered" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>To</th>
+                                                        <th>Amount</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="sendingTxs_body_container">
+                                                    
+                                                </tbody>
+                                                
+                                            </table>	
+                                            <div id="sendingTxs_responseTotalTxs">
 
-							<div class="col-md-6 col-sm-6">
-								<div class="card card-wrapper">
-									<div class="card-header">
-										<h4>Latest Block</h4>
-										<hr>
-									</div>
-									<div class="card-body">
-										<!-- play list -->
-										<div class="block-content force-overflow scroll-custom">
-											<ul id="blocks" class="list-unstyled">
-												
-											</ul>
-										</div>
-									</div>
-									<div class="card-footer">
-										<hr>
-										<div class="">
-											<a href="./blocks.html" class="hvr-back-pulse">View all blocks</a>
-										</div>
-									</div>
-								</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="card card-wrapper">
+                                    <div class="card-header">
+                                        <h4>Receiving transaction</h4>
+                                        <hr>
+                                    </div>
+                                    <div class="card-body">
+                                        <!-- play list -->
+                                        <div class="block-content force-overflow scroll-custom block-scroll-action">
+                                            <table id="receivingTxs_table" class="table table-striped table-bordered" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>From</th>
+                                                        <th>Amount</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="receivingTxs_body_container">
+                                                    
+                                                </tbody>
+                                                
+                                            </table>	
+                                            <div id="receivingTxs_responseTotalTxs">
 
-							</div>
-							<div class="col-md-6 col-sm-6">
-								<div class="card card-wrapper">
-									<div class="card-header">
-										<h4>Latest transaction</h4>
-										<hr>
-									</div>
-									<div class="card-body">
-										<!-- play list -->
-										<div class="block-content force-overflow scroll-custom block-scroll-action">
-											<ul id="transactions" class="list-unstyled">
-												
-											</ul>
-										</div>
-									</div>
-									<div class="card-footer">
-										<hr>
-										<div class="">
-											<a href="#" class="hvr-back-pulse">View all transaction</a>
-										</div>
-									</div>
-								</div>
-
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--/ hero end -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/ hero end -->
 		
 			
 			<!-- meet -->
@@ -306,106 +335,78 @@
 		<script src="js/custom.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
-		<script id="transaction-template" type="text/x-handlebars-template">
-			{{#each this}}
-				<li class="block-item">
-					<!-- song information -->
-					<div class="block-info" >
-						<!-- song title -->
-						<h4>Transaction</h4>
-						<div class="group-item-block">
-							<div class="item-text-block">
-								<span class="name-block-text">From Address :</span>
-								<a href="walletdetail.html?address={{fromAddress}}" class="value-block-text">{{fromAddress}}</a>
-							</div>
-							<div class="item-text-block">
-								<span class="name-block-text">To Address :</span>
-								<a href="walletdetail.html?address={{toAddress}}" class="value-block-text">{{toAddress}}</a>
-							</div>
-							<div class="item-text-block">
-								<span class="name-block-text">Amount :</span>
-								<span class="value-block-text">{{amount}}</span>
-							</div>
-						</div>
-					</div>
-					<!-- music icon -->
-					<!-- <div class="music-icon">
-						<a href="#"><i class="fa fa-play"></i></a>
-						<a href="#"><i class="fa fa-pause"></i></a>
-					</div> -->
-					<div class="clearfix"></div>
-				</li>
-			{{/each}}
-		</script>
-		<script id="block-template" type="text/x-handlebars-template">
-			{{#each this}}
-				<li class="block-item">
-					<!-- song information -->
-					<div class="block-info" >
-						<!-- song title -->
-						<h4>Block({{index}})</h4>
-						<div class="group-item-block">
-							<div class="item-text-block">
-								<span class="name-block-text">Time :</span>
-								<span class="value-block-text">{{timestamp}}</span>
-							</div>
-							<div class="item-text-block">
-								<span class="name-block-text">PreviousHash :</span>
-								<a href="block.html?hash={{previousHash}}" class="value-block-text">{{previousHash}}</a>
-							</div>
-							<div class="item-text-block">
-								<span class="name-block-text">Hash :</span>
-								<a href="block.html?hash={{hash}}" class="value-block-text">{{hash}}</a>
-							</div>
-						</div>
-					</div>
-					<!-- music icon -->
-					<!-- <div class="music-icon">
-						<a href="#"><i class="fa fa-play"></i></a>
-						<a href="#"><i class="fa fa-pause"></i></a>
-					</div> -->
-					<div class="clearfix"></div>
-				</li>
-			{{/each}}
-		</script>
 		<script>
-			window.onload = loadBlocks;
-			function loadBlocks() {
-				const url = 'http://localhost:3001/blocks';
+			let ts = 0;
+			window.onload = initWalletAccessing();
+			function initWalletAccessing(){
+                console.log("test");
+				loadWalletInfo();
+				setInterval(() => {
+					loadWalletBalance();
+				}, 5000);
+			}
+			function loadWalletBalance() { 
+				let currentUrlString = window.location.href;
+				let currentUrl = new URL(currentUrlString);
+				let address = currentUrl.searchParams.get("address");
+				const url = 'http://localhost:3001/balance'+"/"+address.toString();
 				axios.get(url).then(function (res) {
 					console.log(res.data);
-					console.log(res.data.map(x=>x.transactions).reduce((total,num)=>total.concat(num)));
-					const blockSource = document.getElementById("block-template").innerHTML;
-					const blockTemplate = Handlebars.compile(blockSource);
-					const blockHtml = blockTemplate(res.data.map(x=>({
-						index: x.index,
-						timestamp: new Date(x.timestamp*1000).toISOString(),
-						previousHash: x.previousHash,
-						hash: x.hash
-					})));
-					document.getElementById('blocks').innerHTML += blockHtml;
-					// const transactionSource = document.getElementById("transaction-template").innerHTML;
-					// const transactionTemplate = Handlebars.compile(transactionSource);
-					// const transactionHtml = transactionTemplate(res.data.map(x=>x.transactions).reduce((total,num)=>total.concat(num)).map(x=>({
-					// 	fromAddress: x.fromAddress?x.fromAddress:"System",
-					// 	toAddress: x.toAddress,
-					// 	amount: x.amount
-					// })));
-					// document.getElementById('transactions').innerHTML += transactionHtml;
-				})
-				axios.get("http://localhost:3001/transactions").then(function (res) {
-					const transactionSource = document.getElementById("transaction-template").innerHTML;
-					const transactionTemplate = Handlebars.compile(transactionSource);
-					const transactionHtml = transactionTemplate(res.data.map(x=>({
-						fromAddress: x.fromAddress?x.fromAddress:"System",
-						toAddress: x.toAddress,
-						amount: x.amount
-					})));
-					document.getElementById('transactions').innerHTML += transactionHtml;
-				})
+					document.getElementById("walletBalance").innerHTML = '';
+					document.getElementById("walletBalance").innerHTML = res.data.balance;
+				}).catch(function (err) {  
+					console.log(err);
+				});
+			};
+			function loadWalletInfo() {
+				let currentUrlString = window.location.href;
+				let currentUrl = new URL(currentUrlString);
+				let address = currentUrl.searchParams.get("address");
+				console.log(currentUrl.searchParams.get("address"));
+				
+				const urlWalletTransactions = 'http://localhost:3001/transactions' + '/' + address.toString();
+				axios.get(urlWalletTransactions).then(function(res){
+					
+					if(res.data.sendingTxs.length!=0){
+						let i=0;
+						for (f of res.data.sendingTxs) {
+							const tr = `<tr >
+										<th scope="row">${i}</th>
+										<td class="value-toAddress-text"><a href="wallet.html?address=${f.toAddress}" class="value-block-text">${f.toAddress}</a></td>
+										<td>${f.amount}</td>
+									</tr>`;
+								$('#sendingTxs_body_container').append(tr);
+							i+=1;
+						}
+
+						$('#sendingTxs_table').DataTable();
+					}
+					else{
+						document.getElementById("sendingTxs_responseTotalTxs").innerHTML = "This wallet doesnot create any transactions";
+					}
+					if(res.data.receivingTxs.length!=0){
+						let i=0;
+						for (f of res.data.receivingTxs) {
+							let fromAddress =  f.fromAddress?f.fromAddress:"system";
+							const tr = `<tr >
+										<th scope="row">${i}</th>
+										<td class="value-toAddress-text"><a href="wallet.html?address=${fromAddress}" class="value-block-text">${fromAddress}</a></td>
+										<td>${f.amount}</td>
+									</tr>`;
+								$('#receivingTxs_body_container').append(tr);
+							i+=1;
+						}
+
+						$('#receivingTxs_table').DataTable();
+					}
+					else{
+						document.getElementById("receivingTxs_responseTotalTxs").innerHTML = "This wallet doesnot create any transactions";
+					}
+				});
 			}
 		</script>
-		<script>
+		
+        <script>
 			
 			function createWallet(){
 				const createWalletUrl = 'http://localhost:3001/create-wallet';
@@ -416,21 +417,14 @@
 				})
 			};
 			function accessWallet(){
-				const accessWalletUrl = 'http://localhost:3001/access-wallet';
-				axios.post(accessWalletUrl,{
+				const createWalletUrl = 'http://localhost:3001/access-wallet';
+				axios.post(createWalletUrl,{
 					privateKey: document.getElementById('private-key').value,
 				}).then(function (res) { 
-					console.log(res.data.auth);
-					console.log(res.data.address);
-
-					if(res.data.auth!=false){
-						let currentUrlString = window.location.href;
-						let currentUrl = new URL(currentUrlString);
-						console.log(currentUrl.origin);
-						window.location.href = currentUrl.origin + "/wallet.html?address="+res.data.address;
-					} else{
-						alert("Access Wallet failed! Try again");
-					}
+					let currentUrlString = window.location.href;
+					let currentUrl = new URL(currentUrlString);
+					console.log(currentUrl.origin);
+					window.location.href = currentUrl.origin + "/wallet.html?address="+res.data; 
 				}).catch(function (error) {
 					console.log(error);
 				});

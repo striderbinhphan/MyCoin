@@ -412,12 +412,7 @@ hr{
 .scroll-custom .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
     width: 7px;
 }
-.group-item-block {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-top: 10px;
-}
+
 .item-text-block {
     margin-right: 30px;
     width: auto;
@@ -447,6 +442,26 @@ hr{
     max-width: 75px;
     margin-left: 5px;
 }
+.value-address-text{
+	display: flex;
+	-webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    max-width: 240px;
+    margin-left: 5px;
+}
+.value-toAddress-text{
+	display: flex;
+	-webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    max-width: 380px;
+    margin-left: 5px;
+}
 .block-scroll-action .block-item {
 	display: flex;
     justify-content: space-between;
@@ -464,7 +479,16 @@ hr{
 	font-size: 12px;
 	font-style: italic;
 }
-
+.block-item-advanced{
+	display: flex;
+	vertical-align: top;
+	justify-content: space-between;
+	width: 450px;
+	height: 500px;
+	line-height: 45px;
+	font-size: 20px;
+	text-align: center;
+}
 .block-content .block-item .music-icon {float: right;}
 .block-content .block-item .music-icon a {
 	display: inline-block;

@@ -11,19 +11,19 @@ $('.nav-animate').waypoint(function(direction) {
 	offset: '10%'
 });
 
-// Block scrolling
+// // Block scrolling
 	
-$('.nav li a').bind('click', function(e){
-		var anchor = $(this);
-		$('html, body').stop().animate({
-			scrollTop: $(anchor.attr('href')).offset().top
-		}, 1200);
-		if($(window).width() < 768){
-			var $navMain = $(".navbar-collapse");
-			$navMain.collapse('hide');
-		}
-		e.preventDefault();
-});
+// $('.nav li a').bind('click', function(e){
+// 		var anchor = $(this);
+// 		$('html, body').stop().animate({
+// 			scrollTop: $(anchor.attr('href')).offset().top
+// 		}, 1200);
+// 		if($(window).width() < 768){
+// 			var $navMain = $(".navbar-collapse");
+// 			$navMain.collapse('hide');
+// 		}
+// 		e.preventDefault();
+// });
 
 /* play list music button */
 $(document).ready(function(){

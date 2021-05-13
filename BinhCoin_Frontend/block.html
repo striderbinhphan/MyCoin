@@ -43,7 +43,7 @@
 					<form>
 						<div class="modal-body">
 							<div class="form-group">
-								<div class="button-options" >
+								<div class="button-options">
 									<div class="item-select-custom">
 										<div class="wallet-option-container">
 											<div class="img-title-container">
@@ -189,7 +189,7 @@
 							<div class="col-md-6 col-sm-6">
 								<div class="card card-wrapper">
 									<div class="card-header">
-										<h4>Latest Block</h4>
+										<h4>Block Information</h4>
 										<hr>
 									</div>
 									<div class="card-body">
@@ -200,19 +200,13 @@
 											</ul>
 										</div>
 									</div>
-									<div class="card-footer">
-										<hr>
-										<div class="">
-											<a href="./blocks.html" class="hvr-back-pulse">View all blocks</a>
-										</div>
-									</div>
 								</div>
 
 							</div>
 							<div class="col-md-6 col-sm-6">
 								<div class="card card-wrapper">
 									<div class="card-header">
-										<h4>Latest transaction</h4>
+										<h4>Transaction in this block</h4>
 										<hr>
 									</div>
 									<div class="card-body">
@@ -221,12 +215,6 @@
 											<ul id="transactions" class="list-unstyled">
 												
 											</ul>
-										</div>
-									</div>
-									<div class="card-footer">
-										<hr>
-										<div class="">
-											<a href="#" class="hvr-back-pulse">View all transaction</a>
 										</div>
 									</div>
 								</div>
@@ -338,8 +326,8 @@
 			{{/each}}
 		</script>
 		<script id="block-template" type="text/x-handlebars-template">
-			{{#each this}}
-				<li class="block-item">
+			
+				<li class="block-item-advanced">
 					<!-- song information -->
 					<div class="block-info" >
 						<!-- song title -->
@@ -347,7 +335,7 @@
 						<div class="group-item-block">
 							<div class="item-text-block">
 								<span class="name-block-text">Time :</span>
-								<span class="value-block-text">{{timestamp}}</span>
+								<span>{{timestamp}}</span>
 							</div>
 							<div class="item-text-block">
 								<span class="name-block-text">PreviousHash :</span>
@@ -356,6 +344,14 @@
 							<div class="item-text-block">
 								<span class="name-block-text">Hash :</span>
 								<a href="block.html?hash={{hash}}" class="value-block-text">{{hash}}</a>
+							</div>
+                            <div class="item-text-block">
+								<span class="name-block-text">Difficulty :</span>
+								<span >{{difficulty}}</span>
+							</div>
+                            <div class="item-text-block">
+								<span class="name-block-text">Nonce :</span>
+								<span>{{nonce}}</span>
 							</div>
 						</div>
 					</div>
@@ -366,37 +362,33 @@
 					</div> -->
 					<div class="clearfix"></div>
 				</li>
-			{{/each}}
+			
 		</script>
 		<script>
 			window.onload = loadBlocks;
 			function loadBlocks() {
-				const url = 'http://localhost:3001/blocks';
-				axios.get(url).then(function (res) {
+                let currentUrlString = window.location.href;
+                let currentUrl = new URL(currentUrlString);
+                let blockHash = currentUrl.searchParams.get('hash');
+				const urlBlockInfo = 'http://localhost:3001/blocks'+"/" + blockHash;
+				axios.get(urlBlockInfo).then(function (res) {
 					console.log(res.data);
-					console.log(res.data.map(x=>x.transactions).reduce((total,num)=>total.concat(num)));
 					const blockSource = document.getElementById("block-template").innerHTML;
 					const blockTemplate = Handlebars.compile(blockSource);
-					const blockHtml = blockTemplate(res.data.map(x=>({
-						index: x.index,
-						timestamp: new Date(x.timestamp*1000).toISOString(),
-						previousHash: x.previousHash,
-						hash: x.hash
-					})));
+                    const blockData = {
+						index: res.data.index,
+						timestamp: new Date(res.data.timestamp*1000).toISOString(),
+						previousHash: res.data.previousHash,
+						hash: res.data.hash,
+                        difficulty: res.data.difficulty,
+                        nonce : res.data.nonce
+					};
+                    console.log(blockData);
+					const blockHtml = blockTemplate(blockData);
 					document.getElementById('blocks').innerHTML += blockHtml;
-					// const transactionSource = document.getElementById("transaction-template").innerHTML;
-					// const transactionTemplate = Handlebars.compile(transactionSource);
-					// const transactionHtml = transactionTemplate(res.data.map(x=>x.transactions).reduce((total,num)=>total.concat(num)).map(x=>({
-					// 	fromAddress: x.fromAddress?x.fromAddress:"System",
-					// 	toAddress: x.toAddress,
-					// 	amount: x.amount
-					// })));
-					// document.getElementById('transactions').innerHTML += transactionHtml;
-				})
-				axios.get("http://localhost:3001/transactions").then(function (res) {
 					const transactionSource = document.getElementById("transaction-template").innerHTML;
 					const transactionTemplate = Handlebars.compile(transactionSource);
-					const transactionHtml = transactionTemplate(res.data.map(x=>({
+					const transactionHtml = transactionTemplate(res.data.transactions.map(x=>({
 						fromAddress: x.fromAddress?x.fromAddress:"System",
 						toAddress: x.toAddress,
 						amount: x.amount
@@ -405,7 +397,7 @@
 				})
 			}
 		</script>
-		<script>
+        <script>
 			
 			function createWallet(){
 				const createWalletUrl = 'http://localhost:3001/create-wallet';
@@ -416,21 +408,14 @@
 				})
 			};
 			function accessWallet(){
-				const accessWalletUrl = 'http://localhost:3001/access-wallet';
-				axios.post(accessWalletUrl,{
+				const createWalletUrl = 'http://localhost:3001/access-wallet';
+				axios.post(createWalletUrl,{
 					privateKey: document.getElementById('private-key').value,
 				}).then(function (res) { 
-					console.log(res.data.auth);
-					console.log(res.data.address);
-
-					if(res.data.auth!=false){
-						let currentUrlString = window.location.href;
-						let currentUrl = new URL(currentUrlString);
-						console.log(currentUrl.origin);
-						window.location.href = currentUrl.origin + "/wallet.html?address="+res.data.address;
-					} else{
-						alert("Access Wallet failed! Try again");
-					}
+					let currentUrlString = window.location.href;
+					let currentUrl = new URL(currentUrlString);
+					console.log(currentUrl.origin);
+					window.location.href = currentUrl.origin + "/wallet.html?address="+res.data; 
 				}).catch(function (error) {
 					console.log(error);
 				});
