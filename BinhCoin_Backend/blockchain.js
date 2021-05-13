@@ -73,9 +73,9 @@ class BlockChain{
         this.chain = [this.createGenesisBlock()];
         //this.difficulty = 2;
         // in seconds_10minutes in BTC
-        this.BLOCK_GENERATION_INTERVAL = 0.01;
+        this.BLOCK_GENERATION_INTERVAL = 5;
         // in blocks_2016blocks in BTC
-        this.DIFFICULTY_ADJUSTMENT_INTERVAL = 4;  
+        this.DIFFICULTY_ADJUSTMENT_INTERVAL = 5;  
         this.pendingTransactions = [];
         this.miningReward  = 100;
     }
@@ -89,10 +89,12 @@ class BlockChain{
     //     newBlock.previousHash = this.getLatestBlock().hash;
     //     newBlock.mineBlock(this.difficulty);
     //     this.chain.push(newBlock);
-    // }
+    //chain[5], index =5
+    // }0 1 2 3 4 5
+    //(6)
     getDifficulty = () => {
         const latestBlock = this.getLatestBlock();
-        if (latestBlock.index % this.DIFFICULTY_ADJUSTMENT_INTERVAL === 0 && latestBlock.index !== 0) {
+        if ((latestBlock.index) % this.DIFFICULTY_ADJUSTMENT_INTERVAL === 0 && latestBlock.index !== 0) {
             return this.getAdjustedDifficulty();
         }
         else {
@@ -101,18 +103,40 @@ class BlockChain{
     };
     getCurrentTimestamp = () => Math.round(new Date().getTime()/1000);
     getAdjustedDifficulty = () => {
-        const prevAdjustmentBlock = this.chain[this.chain.length - this.DIFFICULTY_ADJUSTMENT_INTERVAL];
-        const timeExpected = this.BLOCK_GENERATION_INTERVAL * this.DIFFICULTY_ADJUSTMENT_INTERVAL;
-        const timeTaken = this.getLatestBlock().timestamp - prevAdjustmentBlock.timestamp;
+        const prevAdjustmentBlock = this.chain[this.chain.length - this.DIFFICULTY_ADJUSTMENT_INTERVAL];//chain[1]
+        const timeExpected = this.BLOCK_GENERATION_INTERVAL * this.DIFFICULTY_ADJUSTMENT_INTERVAL;//25s
+        const timeTaken = this.getLatestBlock().timestamp - prevAdjustmentBlock.timestamp;//chain[5]
+        console.log("============================");
+        console.log("index change",this.chain.length);
+        console.log("timeExpected:",timeExpected);
+        console.log("timetaken:",timeTaken);
+        console.log("this.DIFFICULTY_ADJUSTMENT_INTERVAL:",this.DIFFICULTY_ADJUSTMENT_INTERVAL);
+        console.log("this.chain.length - this.DIFFICULTY_ADJUSTMENT_INTERVAL:",this.chain.length - this.DIFFICULTY_ADJUSTMENT_INTERVAL);
+
+        console.log("previous index adjustmendblock difficulty:",prevAdjustmentBlock.difficulty);
+        
+        console.log("if else:",timeTaken < (timeExpected / 2));
+
+        
         if (timeTaken < (timeExpected / 2)) {
+            console.log("next difficulty:",prevAdjustmentBlock.difficulty+1);
+            console.log("============================");
+
             return prevAdjustmentBlock.difficulty + 1;
         }
         else if (timeTaken > (timeExpected * 2)) {
+            console.log("next difficulty:",prevAdjustmentBlock.difficulty-1);
+            console.log("============================");
+
             return prevAdjustmentBlock.difficulty - 1;
         }
         else {
+            console.log("next difficulty:",prevAdjustmentBlock.difficulty);
+            console.log("============================");
+
             return prevAdjustmentBlock.difficulty;
         }
+
     };
     minePendingTransactions(miningRewardAdress){
         console.log('Miner is mining');
