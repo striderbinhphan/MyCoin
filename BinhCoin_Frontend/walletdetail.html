@@ -372,7 +372,7 @@
 						for (f of res.data.sendingTxs) {
 							const tr = `<tr >
 										<th scope="row">${i}</th>
-										<td class="value-toAddress-text"><a href="wallet.html?address=${f.toAddress}" class="value-block-text">${f.toAddress}</a></td>
+										<td class="value-toAddress-text"><a href="walletdetail.html?address=${f.toAddress}" class="value-block-text">${f.toAddress}</a></td>
 										<td>${f.amount}</td>
 									</tr>`;
 								$('#sendingTxs_body_container').append(tr);
