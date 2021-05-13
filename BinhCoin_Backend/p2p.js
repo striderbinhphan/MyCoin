@@ -1,4 +1,3 @@
-
 const WebSocket = require("ws");
 const blockchain_1 = require("./blockchain");
 const sockets = [];
