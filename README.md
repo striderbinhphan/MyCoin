@@ -25,7 +25,9 @@ npm install
 node main.js
 ```
 Run frontend with: 
+```sh
 http-server
+```
 ### References
 
 
