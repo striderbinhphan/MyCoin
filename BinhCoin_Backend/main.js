@@ -41,10 +41,10 @@ const initVirtualBlockChainData = () => {
 
     binhcoin.minePendingTransactions(minerAdress);
 
-    //console.log(binhcoin);
-    console.log('Miner Balance',binhcoin.getBalanceOfAddress(minerAdress))
-    console.log('My Balance',binhcoin.getBalanceOfAddress(myAddress))
-    console.log('Others Balance',binhcoin.getBalanceOfAddress(othersAddress))
+    // //console.log(binhcoin);
+    // console.log('Miner Balance',binhcoin.getBalanceOfAddress(minerAdress))
+    // console.log('My Balance',binhcoin.getBalanceOfAddress(myAddress))
+    // console.log('Others Balance',binhcoin.getBalanceOfAddress(othersAddress))
 
 
 
@@ -55,10 +55,10 @@ const initVirtualBlockChainData = () => {
     //console.log('Miner is mining');
     binhcoin.minePendingTransactions(minerAdress);
 
-    //console.log(binhcoin);
-    console.log('Miner Balance',binhcoin.getBalanceOfAddress(minerAdress))
-    console.log('My Balance',binhcoin.getBalanceOfAddress(myAddress))
-    console.log('Others Balance',binhcoin.getBalanceOfAddress(othersAddress))
+    // //console.log(binhcoin);
+    // console.log('Miner Balance',binhcoin.getBalanceOfAddress(minerAdress))
+    // console.log('My Balance',binhcoin.getBalanceOfAddress(myAddress))
+    // console.log('Others Balance',binhcoin.getBalanceOfAddress(othersAddress))
 
 
     const tx4 = new Transaction(myAddress,othersAddress,10,currentTimestamp);
@@ -68,10 +68,10 @@ const initVirtualBlockChainData = () => {
     //console.log('Miner is mining');
     binhcoin.minePendingTransactions(minerAdress);
 
-    //console.log(binhcoin);
-    console.log('Miner Balance',binhcoin.getBalanceOfAddress(minerAdress))
-    console.log('My Balance',binhcoin.getBalanceOfAddress(myAddress))
-    console.log('Others Balance',binhcoin.getBalanceOfAddress(othersAddress))
+    // //console.log(binhcoin);
+    // console.log('Miner Balance',binhcoin.getBalanceOfAddress(minerAdress))
+    // console.log('My Balance',binhcoin.getBalanceOfAddress(myAddress))
+    // console.log('Others Balance',binhcoin.getBalanceOfAddress(othersAddress))
 
 
     
@@ -83,10 +83,10 @@ const initVirtualBlockChainData = () => {
     //console.log('Miner is mining');
     binhcoin.minePendingTransactions(minerAdress);
 
-    //console.log(binhcoin);
-    console.log('Miner Balance',binhcoin.getBalanceOfAddress(minerAdress))
-    console.log('My Balance',binhcoin.getBalanceOfAddress(myAddress))
-    console.log('Others Balance',binhcoin.getBalanceOfAddress(othersAddress))
+    // //console.log(binhcoin);
+    // console.log('Miner Balance',binhcoin.getBalanceOfAddress(minerAdress))
+    // console.log('My Balance',binhcoin.getBalanceOfAddress(myAddress))
+    // console.log('Others Balance',binhcoin.getBalanceOfAddress(othersAddress))
 
 
 
@@ -98,10 +98,10 @@ const initVirtualBlockChainData = () => {
     //console.log('Miner is mining');
     binhcoin.minePendingTransactions(minerAdress);
 
-    //console.log(binhcoin);
-    console.log('Miner Balance',binhcoin.getBalanceOfAddress(minerAdress))
-    console.log('My Balance',binhcoin.getBalanceOfAddress(myAddress))
-    console.log('Others Balance',binhcoin.getBalanceOfAddress(othersAddress))
+    // //console.log(binhcoin);
+    // console.log('Miner Balance',binhcoin.getBalanceOfAddress(minerAdress))
+    // console.log('My Balance',binhcoin.getBalanceOfAddress(myAddress))
+    // console.log('Others Balance',binhcoin.getBalanceOfAddress(othersAddress))
 
 
     const tx7 = new Transaction(myAddress,othersAddress,10,currentTimestamp);
@@ -112,10 +112,10 @@ const initVirtualBlockChainData = () => {
     console.log('Miner is mining');
     binhcoin.minePendingTransactions(minerAdress);
 
-    //console.log(binhcoin);
-    console.log('Miner Balance',binhcoin.getBalanceOfAddress(minerAdress))
-    console.log('My Balance',binhcoin.getBalanceOfAddress(myAddress))
-    console.log('Others Balance',binhcoin.getBalanceOfAddress(othersAddress))
+    // //console.log(binhcoin);
+    // console.log('Miner Balance',binhcoin.getBalanceOfAddress(minerAdress))
+    // console.log('My Balance',binhcoin.getBalanceOfAddress(myAddress))
+    // console.log('Others Balance',binhcoin.getBalanceOfAddress(othersAddress))
 
 
    
@@ -126,10 +126,10 @@ const initVirtualBlockChainData = () => {
     console.log('Miner is mining');
     binhcoin.minePendingTransactions(minerAdress);
 
-    //console.log(binhcoin);
-    console.log('Miner Balance',binhcoin.getBalanceOfAddress(minerAdress))
-    console.log('My Balance',binhcoin.getBalanceOfAddress(myAddress))
-    console.log('Others Balance',binhcoin.getBalanceOfAddress(othersAddress))
+    // //console.log(binhcoin);
+    // console.log('Miner Balance',binhcoin.getBalanceOfAddress(minerAdress))
+    // console.log('My Balance',binhcoin.getBalanceOfAddress(myAddress))
+    // console.log('Others Balance',binhcoin.getBalanceOfAddress(othersAddress))
 
 
    
@@ -141,10 +141,10 @@ const initVirtualBlockChainData = () => {
     console.log('Miner is mining');
     binhcoin.minePendingTransactions(minerAdress);
 
-    //console.log(binhcoin);
-    console.log('Miner Balance',binhcoin.getBalanceOfAddress(minerAdress))
-    console.log('My Balance',binhcoin.getBalanceOfAddress(myAddress))
-    console.log('Others Balance',binhcoin.getBalanceOfAddress(othersAddress))
+    // //console.log(binhcoin);
+    // console.log('Miner Balance',binhcoin.getBalanceOfAddress(minerAdress))
+    // console.log('My Balance',binhcoin.getBalanceOfAddress(myAddress))
+    // console.log('Others Balance',binhcoin.getBalanceOfAddress(othersAddress))
 
 
     
@@ -156,10 +156,10 @@ const initVirtualBlockChainData = () => {
     console.log('Miner is mining');
     binhcoin.minePendingTransactions(minerAdress);
 
-    //console.log(binhcoin);
-    console.log('Miner Balance',binhcoin.getBalanceOfAddress(minerAdress))
-    console.log('My Balance',binhcoin.getBalanceOfAddress(myAddress))
-    console.log('Others Balance',binhcoin.getBalanceOfAddress(othersAddress))
+    // //console.log(binhcoin);
+    // console.log('Miner Balance',binhcoin.getBalanceOfAddress(minerAdress))
+    // console.log('My Balance',binhcoin.getBalanceOfAddress(myAddress))
+    // console.log('Others Balance',binhcoin.getBalanceOfAddress(othersAddress))
 
 
    
@@ -171,21 +171,24 @@ const initVirtualBlockChainData = () => {
     console.log('Miner is mining');
     binhcoin.minePendingTransactions(minerAdress);
 
-    //console.log(binhcoin);
-    console.log('Miner Balance',binhcoin.getBalanceOfAddress(minerAdress))
-    console.log('My Balance',binhcoin.getBalanceOfAddress(myAddress))
-    console.log('Others Balance',binhcoin.getBalanceOfAddress(othersAddress))
+    // //console.log(binhcoin);
+    // console.log('Miner Balance',binhcoin.getBalanceOfAddress(minerAdress))
+    // console.log('My Balance',binhcoin.getBalanceOfAddress(myAddress))
+    // console.log('Others Balance',binhcoin.getBalanceOfAddress(othersAddress))
 
     const tx12 = new Transaction(myAddress,othersAddress,10,currentTimestamp);
     tx12.signTransaction(myKey);
     binhcoin.addTransaction(tx12);
 
     //console.log(binhcoin.getBlockPendingTransactions());
-    // const tx13 = new Transaction(myAddress,othersAddress,10);
-    // tx13.signTransaction(myKey);
-    // binhcoin.addTransaction(tx13);
-    // console.log('Miner is mining');
-    // binhcoin.minePendingTransactions(minerAdress);
+    
+    console.log('Miner is mining');
+    binhcoin.minePendingTransactions(minerAdress);
+
+    const tx13 = new Transaction(myAddress,othersAddress,10);
+    tx13.signTransaction(myKey);
+    binhcoin.addTransaction(tx13);
+    binhcoin.minePendingTransactions(minerAdress);
 
     // //console.log(binhcoin);
     // console.log('Miner Balance',binhcoin.getBalanceOfAddress(minerAdress))
