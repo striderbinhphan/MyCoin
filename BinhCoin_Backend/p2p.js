@@ -1,7 +1,6 @@
 
 const WebSocket = require("ws");
 const blockchain_1 = require("./blockchain");
-const transactionPool_1 = require("./transactionpool");
 const sockets = [];
 var MessageType;
 (function (MessageType) {
