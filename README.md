@@ -15,15 +15,17 @@ Code simple Coin
   > Recommended version `14.x LTS`.
 
 ### Getting started
-
+Inside backend/frontend folder,
+Run backend with:
 ```sh
 npm install
 ```
-Run backend with:
+
 ```sh
 node main.js
 ```
-
+Run frontend with: 
+http-server
 ### References
 
 
