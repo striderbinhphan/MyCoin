@@ -19,8 +19,9 @@ Code simple Coin
 ```sh
 npm install
 ```
+Run backend with:
 ```sh
-npm start
+node main.js
 ```
 
 ### References
