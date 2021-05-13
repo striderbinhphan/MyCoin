@@ -69,13 +69,16 @@ class Block{
     }
 }
 class BlockChain{
-    constructor(){
-        this.chain = [this.createGenesisBlock()];
+    constructor(chain,socket){
+        this.chain = chain||[this.createGenesisBlock()];
+        this.sockets = socket;
         //this.difficulty = 2;
         // in seconds_10minutes in BTC
         this.BLOCK_GENERATION_INTERVAL = 5;
         // in blocks_2016blocks in BTC
         this.DIFFICULTY_ADJUSTMENT_INTERVAL = 5;  
+       
+
         this.pendingTransactions = [];
         this.miningReward  = 100;
     }
@@ -89,12 +92,10 @@ class BlockChain{
     //     newBlock.previousHash = this.getLatestBlock().hash;
     //     newBlock.mineBlock(this.difficulty);
     //     this.chain.push(newBlock);
-    //chain[5], index =5
-    // }0 1 2 3 4 5
-    //(6)
+    // }
     getDifficulty = () => {
         const latestBlock = this.getLatestBlock();
-        if ((latestBlock.index) % this.DIFFICULTY_ADJUSTMENT_INTERVAL === 0 && latestBlock.index !== 0) {
+        if (latestBlock.index % this.DIFFICULTY_ADJUSTMENT_INTERVAL === 0 && latestBlock.index !== 0) {
             return this.getAdjustedDifficulty();
         }
         else {
@@ -151,12 +152,7 @@ class BlockChain{
         //let nextBlock = new Block(index,timestamp,this.pendingTransactions, this.getLatestBlock().hash,difficulty);
         //console.log(`index:${index}+latestblock${latestBlock.hash}+${timestamp}+${this.pendingTransactions}+${difficulty}`)
         let newBlock = this.findBlock(index,latestBlock.hash,timestamp,this.pendingTransactions,difficulty);
-        if (this.addBlockToChain(newBlock)) {
-            //p2p_1.broadcastLatest();
-            console.log("broadcast others node here@@");
-        }
-        
-        
+        return this.addBlockToChain(newBlock);
     }
     calculateHash = (index,previousHash,timestamp,transactions,nonce,difficulty)=>{
         return SHA256(index+previousHash+timestamp+JSON.stringify(transactions)+nonce+difficulty).toString();
@@ -244,7 +240,24 @@ class BlockChain{
         }
         return false;
     };
-    
+    getAccumulatedDifficulty = (aBlockchain) => {
+        return aBlockchain
+            .map((block) => block.difficulty)
+            .map((difficulty) => Math.pow(2, difficulty))
+            .reduce((a, b) => a + b);
+    };
+    replaceChain(receivedBlocks){
+        // const aUnspentTxOuts = isValidChain(newBlocks);
+        const validChain = this.isChainValid(receivedBlocks);
+        if (validChain &&
+            getAccumulatedDifficulty(newBlocks) > getAccumulatedDifficulty(this.getBlockChain())) {
+            console.log('Received blockchain is valid. Replacing current blockchain with received blockchain');
+            this.blockchain = newBlocks;           
+        }
+        else {
+            console.log('Received blockchain invalid');
+        }
+    }
     //MYcoding fixing
     addTransaction(transaction){
         if(transaction.fromAddress  === null)//mining reward from our blockchain coin system
@@ -325,7 +338,7 @@ class BlockChain{
         const transactions = this.chain.map(txs=>txs.transactions).reduce((txArr,ele)=>txArr.concat(ele));
         return transactions.concat(this.pendingTransactions);
     }
-    getBlockPendingTransactions(){
+    getPendingTransactions(){
         return this.pendingTransactions;
     }
     getSendingTransactionsOfAddress(address){

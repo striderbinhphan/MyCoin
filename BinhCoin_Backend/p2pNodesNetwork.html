@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>P2PServer</title>
+</head>
+<body>
+    
+    <div id='textMessage'></div>
+    <button id = "queryAll">Query all block</button>
+    <button id = "queryPendingTxs">Query unconfirm/pending Transactions</button>
+    <script>
+        var sock = new WebSocket("ws://localhost:6001");
+        var textMessage = document.getElementById('textMessage');
+        sock.onopen= function (event) {
+            textMessage.innerHTML = "<h5>Query latest block!</h5>" +'<br>';
+            sock.send(JSON.stringify({
+                type: 0,
+            }))
+        }
+        sock.onmessage =function(event){
+            const resData = JSON.parse(event.data);
+            console.log(resData);
+            textMessage.innerHTML +="<h5>Received from other node:  </h5>"+ resData.data+'<br>';
+        }
+        document.querySelector('#queryAll').addEventListener('click',function () {
+            sock.send(JSON.stringify({
+                type:1,
+            }));
+        })
+        document.querySelector('#queryPendingTxs').addEventListener('click',function () {
+            sock.send(JSON.stringify({
+                type:3,
+            }));
+        })
+    </script>
+</body>
+</html>

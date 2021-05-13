@@ -411,6 +411,7 @@
 				const createWalletUrl = 'http://localhost:3001/create-wallet';
 				axios.post(createWalletUrl).then(function (res) { 
 					console.log(res.data);
+					alert("Create wallet successful");
 					var file = new File([JSON.stringify(res.data)], "WalletKey.txt", {type: "text/plain;charset=utf-8"});
 					saveAs(file);
 				})
@@ -433,6 +434,7 @@
 					}
 				}).catch(function (error) {
 					console.log(error);
+					alert(error);
 				});
 			}
 		</script>
